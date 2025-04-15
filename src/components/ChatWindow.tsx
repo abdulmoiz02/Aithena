@@ -7,9 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
+console.log('GEMINI_API_KEY:', GEMINI_API_KEY);
 export function ChatWindow() {
   const { selectedSubject, messages, addMessage } = useApp();
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
