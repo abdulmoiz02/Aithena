@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { Message, Subject } from '../types';
-import { subjects } from '../data/subjects';
 
 interface AppContextType {
   messages: Message[];
