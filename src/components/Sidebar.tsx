@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { subjects } from '../data/subjects';
 import { useApp } from '../context/AppContext';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import logo from '/src/assets/aithena-logo.png';
 
 export function Sidebar() {
   const { selectedSubject, setSelectedSubject, isSidebarOpen, toggleSidebar } = useApp();
@@ -22,28 +23,18 @@ export function Sidebar() {
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         }`}
       >
-        <div className="p-6 flex justify-between items-center">
-          <div>
-            <motion.h1 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-3xl font-bold text-primary-600 dark:text-primary-400"
-            >
-              Aithena
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-sm text-gray-500 dark:text-gray-400"
-            >
-              AI Learning Assistant
-            </motion.p>
-          </div>
-          
-          {/* Close button - only on mobile */}
+        <div className="p-6 relative">
+          <motion.img 
+            src={logo}
+            alt="Aithena Logo"
+            className="w-32 h-32 mx-auto mb-2 rounded-lg" 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+          {/* Close button - only visible on mobile */}
           <button 
-            className="md:hidden text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="md:hidden absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             onClick={toggleSidebar}
           >
             <XMarkIcon className="h-6 w-6" />
