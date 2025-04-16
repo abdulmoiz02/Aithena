@@ -10,6 +10,7 @@ interface AppContextType {
   toggleDarkMode: () => void;
   // Add these for responsive functionality:
   isSidebarOpen: boolean;
+ 
   toggleSidebar: () => void;
 }
 
@@ -62,6 +63,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // Add toggle function for sidebar
   const toggleSidebar = () => {
+    console.log("Toggling sidebar");
     setIsSidebarOpen(prev => !prev);
   };
 
