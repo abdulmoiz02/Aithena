@@ -1,15 +1,18 @@
-import { SunIcon, MoonIcon, Bars3Icon, UserCircleIcon, BellIcon } from '@heroicons/react/24/outline';
+// src/components/Header.tsx
+import { SunIcon, MoonIcon, Bars3Icon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { useApp } from '../context/AppContext';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export function Header() {
   const { isDarkMode, toggleDarkMode, selectedSubject, toggleSidebar } = useApp();
+  const navigate = useNavigate();
 
   return (
     <header className="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed top-0 right-0 left-0 md:left-72 z-10 shadow-sm">
       <div className="h-full px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center">
-          {/* Mobile menu button with animation */}
+          {/* Mobile menu button */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -20,7 +23,7 @@ export function Header() {
             <Bars3Icon className="h-6 w-6" />
           </motion.button>
           
-          {/* Subject display with decoration */}
+          {/* Subject display */}
           <div className="flex items-center">
             {selectedSubject ? (
               <>
@@ -43,17 +46,7 @@ export function Header() {
         </div>
         
         <div className="flex items-center space-x-2 md:space-x-4">
-          {/* Notification button */}
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-full transition-colors duration-200"
-            aria-label="Notifications"
-          >
-            <BellIcon className="h-5 w-5" />
-          </motion.button>
-          
-          {/* Dark mode toggle with animation */}
+          {/* Dark mode toggle */}
           <motion.button
             whileHover={{ scale: 1.1, rotate: isDarkMode ? -30 : 30 }}
             whileTap={{ scale: 0.95 }}
@@ -68,20 +61,21 @@ export function Header() {
             )}
           </motion.button>
           
-          {/* User profile */}
+          {/* Profile/Account button – always visible */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden md:flex items-center space-x-2 p-1 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+            onClick={() => navigate('/profile')}
+            className="flex items-center space-x-2 p-1 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
             aria-label="User profile"
           >
             <UserCircleIcon className="h-6 w-6" />
-            <span className="text-sm font-medium hidden lg:block">Account</span>
+            <span className="text-sm font-medium">Account</span>
           </motion.button>
         </div>
       </div>
       
-      {/* Progress indicator when a subject is selected */}
+      {/* Progress indicator */}
       {selectedSubject && (
         <div className="h-1 bg-gray-100 dark:bg-gray-700 w-full">
           <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 w-3/4 rounded-r-full"></div>

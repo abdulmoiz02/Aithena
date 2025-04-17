@@ -6,9 +6,9 @@ import { ChatWindow } from './components/ChatWindow';
 function App() {
   return (
     <AppProvider>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col">
+      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
         <Sidebar />
-        <main className="md:ml-64 flex-1 flex flex-col">
+        <main className="flex-1 w-full md:ml-64">
           <Header />
           <ChatWindow />
         </main>

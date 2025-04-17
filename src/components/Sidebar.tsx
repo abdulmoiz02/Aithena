@@ -1,12 +1,14 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { subjects } from '../data/subjects';
 import { useApp } from '../context/AppContext';
 import { XMarkIcon, AcademicCapIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import logo from '/src/assets/aithena-logo.png';
-import { useEffect } from 'react';
+import { FeedbackModal } from './FeedbackModal'; // Adjust the path as needed
 
 export function Sidebar() {
   const { selectedSubject, setSelectedSubject, isSidebarOpen, toggleSidebar } = useApp();
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
   // Fix to ensure sidebar is properly displayed on larger screens after reload
   useEffect(() => {
@@ -170,12 +172,19 @@ export function Sidebar() {
           <motion.button 
             whileHover={{ y: -2 }}
             whileTap={{ y: 1 }}
+            onClick={() => setIsFeedbackModalOpen(true)}
             className="w-full py-2 rounded-lg text-sm text-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
           >
             Feedback & Support
           </motion.button>
         </div>
       </aside>
+
+      {/* Render the Feedback Modal */}
+      <FeedbackModal 
+        isOpen={isFeedbackModalOpen} 
+        onClose={() => setIsFeedbackModalOpen(false)} 
+      />
     </>
   );
 }
