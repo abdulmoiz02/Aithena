@@ -10,7 +10,6 @@ import {
   AcademicCapIcon,
   BellIcon,
   MoonIcon,
-  SunIcon,
   Cog6ToothIcon,
   ArrowLeftOnRectangleIcon,
   ClockIcon,
@@ -67,7 +66,7 @@ const dummyUserProfile: UserProfile = {
 const languages = ['English', 'Spanish', 'French', 'German', 'Chinese', 'Japanese'];
 
 export const ProfileScreen: React.FC = () => {
-  const { isDarkMode, toggleDarkMode } = useApp();
+  const {  toggleDarkMode } = useApp();
   const [profile, setProfile] = useState<UserProfile>(dummyUserProfile);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editedProfile, setEditedProfile] = useState<UserProfile>(dummyUserProfile);
